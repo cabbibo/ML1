@@ -1,0 +1,780 @@
+{
+ "entries": [
+  {
+   "compression": 8,
+   "hash": "796539f86d37a8956ea01b90d0319176ff53255b",
+   "pkgpath": "Data/026fdb7947a64456484bf2948a63331b",
+   "size": 7204,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/026fdb7947a64456484bf2948a63331b"
+  },
+  {
+   "compression": 8,
+   "hash": "2db51a0094edcecafc6d26e9f35d01f215d7a817",
+   "pkgpath": "Data/04c58ebfe65740c4fba9abc9d7a8d875",
+   "size": 4108,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/04c58ebfe65740c4fba9abc9d7a8d875"
+  },
+  {
+   "compression": 8,
+   "hash": "843e847ce11a04844ef64dbfff24272329c855ae",
+   "pkgpath": "Data/07339fd33c960884b8f36da8bb310df9",
+   "size": 17596,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/07339fd33c960884b8f36da8bb310df9"
+  },
+  {
+   "compression": 8,
+   "hash": "b90706a0a7ed1dde29601ca16a4aff3dfd6e32c5",
+   "pkgpath": "Data/125c65400f7064991882a4f78a4321d2",
+   "size": 5888,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/125c65400f7064991882a4f78a4321d2"
+  },
+  {
+   "compression": 8,
+   "hash": "d98feaedf4ac815b114430f9482c3738c5467e63",
+   "pkgpath": "Data/178c5497b490da644baabd2fb13f2fc2",
+   "size": 7580,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/178c5497b490da644baabd2fb13f2fc2"
+  },
+  {
+   "compression": 8,
+   "hash": "b52b789b3e377734022bb4a4124c1ec459728473",
+   "pkgpath": "Data/1a32a3656e1c42241bcb1fd8adc8cc4c",
+   "size": 7976,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/1a32a3656e1c42241bcb1fd8adc8cc4c"
+  },
+  {
+   "compression": 8,
+   "hash": "290cdffda1e806d5b5fd5f5bfc56a93ca03062a6",
+   "pkgpath": "Data/21df76e5563d4b041974e84a9249cd56",
+   "size": 7428,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/21df76e5563d4b041974e84a9249cd56"
+  },
+  {
+   "compression": 8,
+   "hash": "492e3d87b6d708ed5758c0d8c7bcd97dfd440085",
+   "pkgpath": "Data/27484d7eb9b1f7a4c82729bb13d94b7f",
+   "size": 4624,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/27484d7eb9b1f7a4c82729bb13d94b7f"
+  },
+  {
+   "compression": 8,
+   "hash": "6dcd721965d9462ffcbeaeee3800e3ecedb37afb",
+   "pkgpath": "Data/2a296d1e9be38884193119fb3e3229cc",
+   "size": 7552,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/2a296d1e9be38884193119fb3e3229cc"
+  },
+  {
+   "compression": 8,
+   "hash": "397afb9f906c10bb86d7f01fd5caa74223b2c6e4",
+   "pkgpath": "Data/2eacd0eee4eb542d1a0fdd68678ad72f",
+   "size": 19980,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/2eacd0eee4eb542d1a0fdd68678ad72f"
+  },
+  {
+   "compression": 8,
+   "hash": "f56e1bb363172bab273c4df4eac23606f1a75448",
+   "pkgpath": "Data/328be7f140e7a477ba1072ab71e8b8d3",
+   "size": 23572,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/328be7f140e7a477ba1072ab71e8b8d3"
+  },
+  {
+   "compression": 8,
+   "hash": "5064042dccb994cefb1d37a5b426a492598c8c3f",
+   "pkgpath": "Data/349764a24cc494edba4692b07faf6e81",
+   "size": 4168,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/349764a24cc494edba4692b07faf6e81"
+  },
+  {
+   "compression": 8,
+   "hash": "ae6752135f23925997dd7e985fdeb26d2ce8f52e",
+   "pkgpath": "Data/34d326833c1d94c1794dcac474a516fc",
+   "size": 4192,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/34d326833c1d94c1794dcac474a516fc"
+  },
+  {
+   "compression": 8,
+   "hash": "aa0a5abf39b71a00825fa1de28d178e82be0877e",
+   "pkgpath": "Data/36cb124ad08a6cf44a53180523b432af",
+   "size": 18800,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/36cb124ad08a6cf44a53180523b432af"
+  },
+  {
+   "compression": 8,
+   "hash": "9b5b560251ff9284c699b8aca3fba47c24d7f248",
+   "pkgpath": "Data/394f7e749f1fb4b898fbcc03b0ebe8ec",
+   "size": 4680,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/394f7e749f1fb4b898fbcc03b0ebe8ec"
+  },
+  {
+   "compression": 8,
+   "hash": "efa61ae06303021fc3239ce8ff2a76c35d1fc5f3",
+   "pkgpath": "Data/39d111ef6b46a420082d4e2d056a5b01",
+   "size": 12516,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/39d111ef6b46a420082d4e2d056a5b01"
+  },
+  {
+   "compression": 8,
+   "hash": "6b4bde5075900f0dc0239b282f3fbb213140fc6c",
+   "pkgpath": "Data/3b012d07b0d5943e0834002e18f789b2",
+   "size": 10488,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/3b012d07b0d5943e0834002e18f789b2"
+  },
+  {
+   "compression": 8,
+   "hash": "6917520707246784b46a3c57c8528e8ea0c56a7e",
+   "pkgpath": "Data/3e5425ab580a84b6aa6db318ab6556f8",
+   "size": 7184,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/3e5425ab580a84b6aa6db318ab6556f8"
+  },
+  {
+   "compression": 8,
+   "hash": "f7420ac093234593dab309f11b5045ca22bb612a",
+   "pkgpath": "Data/3f29eb733cd38463c990f1e4620553de",
+   "size": 4164,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/3f29eb733cd38463c990f1e4620553de"
+  },
+  {
+   "compression": 8,
+   "hash": "92501beaa10b80e43569f0ffbd74314715b698e3",
+   "pkgpath": "Data/3f92b255fe6dcff44a54ee270b5d9430",
+   "size": 4120,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/3f92b255fe6dcff44a54ee270b5d9430"
+  },
+  {
+   "compression": 8,
+   "hash": "e5febaf5181ea6d24840919f99642ad2e38aae34",
+   "pkgpath": "Data/43784b026169be941b734d00db164e7a",
+   "size": 4116,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/43784b026169be941b734d00db164e7a"
+  },
+  {
+   "compression": 8,
+   "hash": "e1bf111b09ef80faa351d43340c0fadf61a4cacf",
+   "pkgpath": "Data/4abf14337c95c92448b4e0ac028c2e48",
+   "size": 4112,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/4abf14337c95c92448b4e0ac028c2e48"
+  },
+  {
+   "compression": 8,
+   "hash": "879b9ee7616a18aef44c87e2927231fa286f5fc1",
+   "pkgpath": "Data/4b00b631764dabe4b92e478e14d0e8bd",
+   "size": 118448,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/4b00b631764dabe4b92e478e14d0e8bd"
+  },
+  {
+   "compression": 8,
+   "hash": "49c3bc47d55571f1db5b6323ad3f69ec33489f7b",
+   "pkgpath": "Data/529ac7866a7b2ef47a1fce43eb1c0f39",
+   "size": 4116,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/529ac7866a7b2ef47a1fce43eb1c0f39"
+  },
+  {
+   "compression": 8,
+   "hash": "c3e2d33d54885c03b08044e0729aa4be1c09ec7b",
+   "pkgpath": "Data/52aec1dd412494344b6ecf973bda2d5f",
+   "size": 7164,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/52aec1dd412494344b6ecf973bda2d5f"
+  },
+  {
+   "compression": 8,
+   "hash": "1bf766ca3c0504be0a55e18b3d24dc50251fdfee",
+   "pkgpath": "Data/56755827ee7f7434190d5c4250dc4513",
+   "size": 4116,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/56755827ee7f7434190d5c4250dc4513"
+  },
+  {
+   "compression": 8,
+   "hash": "73fc139dc51a823c7a05f727a00a53b24a95fd2c",
+   "pkgpath": "Data/5998ea1249660ba459dc2a6dcc4900df",
+   "size": 4588,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/5998ea1249660ba459dc2a6dcc4900df"
+  },
+  {
+   "compression": 8,
+   "hash": "6e00a372dd63fdf0d6dffc6a326e5663bc49bf16",
+   "pkgpath": "Data/59ba749bb64084241b5bf3396c31ce05",
+   "size": 4640,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/59ba749bb64084241b5bf3396c31ce05"
+  },
+  {
+   "compression": 8,
+   "hash": "1a52fb88c2df11702b3d7111a6e089f430de3469",
+   "pkgpath": "Data/5e6eea06554a26e49a34cc039c6d90e5",
+   "size": 4112,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/5e6eea06554a26e49a34cc039c6d90e5"
+  },
+  {
+   "compression": 8,
+   "hash": "edf905abc314a805e15a43b7f7ff4ddf0022c8d3",
+   "pkgpath": "Data/657898d6338762a46b79cdbfaf8b395b",
+   "size": 4120,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/657898d6338762a46b79cdbfaf8b395b"
+  },
+  {
+   "compression": 8,
+   "hash": "a106a785045d81ff5185ea769f26f6aca29afe9e",
+   "pkgpath": "Data/67799fb75f6584c0cb815b9e7c227511",
+   "size": 7332,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/67799fb75f6584c0cb815b9e7c227511"
+  },
+  {
+   "compression": 8,
+   "hash": "3625ede0336f08d451055c4ba3499a31753f4421",
+   "pkgpath": "Data/6986051eb67f3b04fb60505521cd8696",
+   "size": 4128,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/6986051eb67f3b04fb60505521cd8696"
+  },
+  {
+   "compression": 8,
+   "hash": "d6ec1b82d4f0df0f122a6c56b0ba90c0edd94dfa",
+   "pkgpath": "Data/69a1be02da3f38c44b44e1fbc6b8dc49",
+   "size": 4116,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/69a1be02da3f38c44b44e1fbc6b8dc49"
+  },
+  {
+   "compression": 8,
+   "hash": "cf7c0de548f4395444f2ae3d235ab665a87e8082",
+   "pkgpath": "Data/700322ac002222e44994e35f5cf84b45",
+   "size": 4108,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/700322ac002222e44994e35f5cf84b45"
+  },
+  {
+   "compression": 8,
+   "hash": "c681f4090c824cfee8c9a3dc288372ea7a236946",
+   "pkgpath": "Data/744e6beca7cdeb54697ec9ba5b25bf0b",
+   "size": 6736,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/744e6beca7cdeb54697ec9ba5b25bf0b"
+  },
+  {
+   "compression": 8,
+   "hash": "32f4bfd37dd7c30bbdef8e95d57700ddc904fcc9",
+   "pkgpath": "Data/767de6131fdb19f489608a073eb85acf",
+   "size": 10520,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/767de6131fdb19f489608a073eb85acf"
+  },
+  {
+   "compression": 8,
+   "hash": "c60cbe83473dccac3fce8eff12e8ce86acf8ca8b",
+   "pkgpath": "Data/76bb5ccff5bd55b4b817a91699796dfa",
+   "size": 7304,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/76bb5ccff5bd55b4b817a91699796dfa"
+  },
+  {
+   "compression": 8,
+   "hash": "e58a083b02af582a264e5055dedd2ea33147b25b",
+   "pkgpath": "Data/791a96fffaca542029b78a8500acca2e",
+   "size": 8576,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/791a96fffaca542029b78a8500acca2e"
+  },
+  {
+   "compression": 8,
+   "hash": "4264bb23d10936b70a2e84ed96b7f6fbae193eae",
+   "pkgpath": "Data/7d9dbd750ba4247c991951dbbca2a7be",
+   "size": 132868,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/7d9dbd750ba4247c991951dbbca2a7be"
+  },
+  {
+   "compression": 8,
+   "hash": "6bdb89f1c24d3514f2e13f90c061134f46fed8dc",
+   "pkgpath": "Data/81aae47efb18b5040bae051011beb697",
+   "size": 16572,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/81aae47efb18b5040bae051011beb697"
+  },
+  {
+   "compression": 8,
+   "hash": "1410777845c4a20a1f4b3dcbff8af968dbf82d57",
+   "pkgpath": "Data/882d30869aaefec4aa0df9970b59b5ca",
+   "size": 4124,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/882d30869aaefec4aa0df9970b59b5ca"
+  },
+  {
+   "compression": 8,
+   "hash": "1ae15298593cfd430f58729fec97e8cfd49a25cd",
+   "pkgpath": "Data/89cc839acc523054f9102759fcf43bae",
+   "size": 4116,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/89cc839acc523054f9102759fcf43bae"
+  },
+  {
+   "compression": 8,
+   "hash": "7c6c2b1cecfec57784cdebb9e57075991e36146e",
+   "pkgpath": "Data/8c179f6f93b36694db99550fcae69e93",
+   "size": 105308,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/8c179f6f93b36694db99550fcae69e93"
+  },
+  {
+   "compression": 8,
+   "hash": "db30652a4ae99aa23a0e8f4364cb3849a8f4a833",
+   "pkgpath": "Data/90f4695c57f0342e79a87cc2ace52e2d",
+   "size": 6404,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/90f4695c57f0342e79a87cc2ace52e2d"
+  },
+  {
+   "compression": 8,
+   "hash": "ad6209bfa7fee9015a9d537d1178914d0a3d551f",
+   "pkgpath": "Data/9652a3b1430a2b644a69c5566ea5ff11",
+   "size": 4124,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/9652a3b1430a2b644a69c5566ea5ff11"
+  },
+  {
+   "compression": 8,
+   "hash": "ad48d171b1a70601e42b7178b819b5c5b7d4fc5b",
+   "pkgpath": "Data/Managed/Metadata/global-metadata.dat",
+   "size": 2849908,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/Managed/Metadata/global-metadata.dat"
+  },
+  {
+   "compression": 8,
+   "hash": "d40f82ff6e5e1826c468a0aaea576317b085736f",
+   "pkgpath": "bin/libil2cpp.so",
+   "size": 34811472,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/Native/libil2cpp.so",
+   "xfrm_flags": {
+    "signed": {
+     "cert": "C:\\Users\\Cabbibo\\Desktop\\cert1\\TempSharedCert.cert"
+    },
+    "taildata": {
+     "debuggable": true,
+     "sbox": "USER",
+     "version": 3
+    }
+   },
+   "xfrm_hash": "4a881b5a3e062c6d52dbd6b73d527553b2c11527",
+   "xfrm_path": "C:/Users/Cabbibo/Desktop/Unity/ML1/.out/.cache/debug_lumin_clang-3.8_aarch64/bo.cabbi.lookstrange3-63fd78e1acd4914d\\libil2cpp.so-9db63e98ce2b77b2",
+   "xfrm_size": 34812230
+  },
+  {
+   "compression": 8,
+   "hash": "99be27c27e2af134a459a05f2240800e1a0eddd0",
+   "pkgpath": "bin/AudioPluginMSASpatializer.so",
+   "size": 247376,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/Plugins/AudioPluginMSASpatializer.so",
+   "xfrm_flags": {
+    "signed": {
+     "cert": "C:\\Users\\Cabbibo\\Desktop\\cert1\\TempSharedCert.cert"
+    },
+    "taildata": {
+     "debuggable": true,
+     "sbox": "USER",
+     "version": 3
+    }
+   },
+   "xfrm_hash": "a3bb11701d0ce15de0bd8042edad3364d0678f58",
+   "xfrm_path": "C:/Users/Cabbibo/Desktop/Unity/ML1/.out/.cache/debug_lumin_clang-3.8_aarch64/bo.cabbi.lookstrange3-63fd78e1acd4914d\\AudioPluginMSASpatializer.so-7878befbc02e0a29",
+   "xfrm_size": 248134
+  },
+  {
+   "compression": 8,
+   "hash": "e1d6a3392ecde066ea0cc34538e9839d8d87671d",
+   "pkgpath": "bin/UnityEngine.SpatialTracking.dll",
+   "size": 9216,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/Plugins/UnityEngine.SpatialTracking.dll"
+  },
+  {
+   "compression": 8,
+   "hash": "c0a15a2993e1f9df9db7db864cb0c8f8fa94ca45",
+   "pkgpath": "bin/UnityEngine.TestRunner.dll",
+   "size": 65536,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/Plugins/UnityEngine.TestRunner.dll"
+  },
+  {
+   "compression": 8,
+   "hash": "d93ff7b64d92abd6dbb8419c3348ab5f56ad5ec5",
+   "pkgpath": "bin/UnityMagicLeap.so",
+   "size": 728232,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/Plugins/UnityMagicLeap.so",
+   "xfrm_flags": {
+    "signed": {
+     "cert": "C:\\Users\\Cabbibo\\Desktop\\cert1\\TempSharedCert.cert"
+    },
+    "taildata": {
+     "debuggable": true,
+     "sbox": "USER",
+     "version": 3
+    }
+   },
+   "xfrm_hash": "300e9a6cdf131d794f255f9529670ca89d035371",
+   "xfrm_path": "C:/Users/Cabbibo/Desktop/Unity/ML1/.out/.cache/debug_lumin_clang-3.8_aarch64/bo.cabbi.lookstrange3-63fd78e1acd4914d\\UnityMagicLeap.so-7878befbc02e0a29",
+   "xfrm_size": 728990
+  },
+  {
+   "compression": 8,
+   "hash": "dd16fc5a22220fad38161f73afa74926cb2eda96",
+   "pkgpath": "bin/libml_camera_plugin.so",
+   "size": 14184,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/Plugins/libml_camera_plugin.so",
+   "xfrm_flags": {
+    "signed": {
+     "cert": "C:\\Users\\Cabbibo\\Desktop\\cert1\\TempSharedCert.cert"
+    },
+    "taildata": {
+     "debuggable": true,
+     "sbox": "USER",
+     "version": 3
+    }
+   },
+   "xfrm_hash": "631069306257e36e4d2dcb9545ccaf01e34344e6",
+   "xfrm_path": "C:/Users/Cabbibo/Desktop/Unity/ML1/.out/.cache/debug_lumin_clang-3.8_aarch64/bo.cabbi.lookstrange3-63fd78e1acd4914d\\libml_camera_plugin.so-7878befbc02e0a29",
+   "xfrm_size": 14942
+  },
+  {
+   "compression": 8,
+   "hash": "affee7f7610bd12f2b914f61c1b34ca32a72e424",
+   "pkgpath": "bin/libml_mediaplayer_plugin.so",
+   "size": 30528,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/Plugins/libml_mediaplayer_plugin.so",
+   "xfrm_flags": {
+    "signed": {
+     "cert": "C:\\Users\\Cabbibo\\Desktop\\cert1\\TempSharedCert.cert"
+    },
+    "taildata": {
+     "debuggable": true,
+     "sbox": "USER",
+     "version": 3
+    }
+   },
+   "xfrm_hash": "bde65fad8d22030ff0f9fe26ece5f3ec26e1f4cd",
+   "xfrm_path": "C:/Users/Cabbibo/Desktop/Unity/ML1/.out/.cache/debug_lumin_clang-3.8_aarch64/bo.cabbi.lookstrange3-63fd78e1acd4914d\\libml_mediaplayer_plugin.so-7878befbc02e0a29",
+   "xfrm_size": 31286
+  },
+  {
+   "compression": 8,
+   "hash": "5629c7ff5fb59ddc72778d4b9d3dbadcde480998",
+   "pkgpath": "bin/nunit.framework.dll",
+   "size": 328192,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/Plugins/nunit.framework.dll"
+  },
+  {
+   "compression": 8,
+   "hash": "e6124da6073b916e29e013cf3ae3f58a4c5fdb0e",
+   "pkgpath": "Data/Resources/mscorlib.dll-resources.dat",
+   "size": 337563,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/Resources/mscorlib.dll-resources.dat"
+  },
+  {
+   "compression": 8,
+   "hash": "dc1423ee40a78f4701880b37e1f07bc4f3500e9d",
+   "pkgpath": "Data/Resources/unity default resources",
+   "size": 3308004,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/Resources/unity default resources"
+  },
+  {
+   "compression": 8,
+   "hash": "1a992ef2c40155d35c04ae43e256729d23934be6",
+   "pkgpath": "Data/Resources/unity_builtin_extra",
+   "size": 286156,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/Resources/unity_builtin_extra"
+  },
+  {
+   "compression": 8,
+   "hash": "9bbb5e3aae616602db933abd34140e11132fccea",
+   "pkgpath": "Data/UnitySubsystems/Runtime/UnitySubsystemsManifest.json",
+   "size": 438,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/UnitySubsystems/Runtime/UnitySubsystemsManifest.json"
+  },
+  {
+   "compression": 8,
+   "hash": "1179fc768f4ce47a1578265050293cfbbe96dd56",
+   "pkgpath": "Data/a3e36d7a4651e493fa0791d1b878b9f8",
+   "size": 4588,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/a3e36d7a4651e493fa0791d1b878b9f8"
+  },
+  {
+   "compression": 8,
+   "hash": "60679b9efe50975d60e29688434f28a80d3cd735",
+   "pkgpath": "Data/aeefd53318e8d7f498e6cc2c006c1e80",
+   "size": 13496,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/aeefd53318e8d7f498e6cc2c006c1e80"
+  },
+  {
+   "compression": 8,
+   "hash": "70ff0fd8b941f9fc980ccfc2a8707d5d79e41f3a",
+   "pkgpath": "Data/b0903c50a66ce554d89a7f587c905350",
+   "size": 7368,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/b0903c50a66ce554d89a7f587c905350"
+  },
+  {
+   "compression": 8,
+   "hash": "fd7ecd29f5691b8956d5780caddf8f438de55c8f",
+   "pkgpath": "Data/b40607b27a2bb9942a250bd4c42b921f",
+   "size": 6368,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/b40607b27a2bb9942a250bd4c42b921f"
+  },
+  {
+   "compression": 8,
+   "hash": "6568e40822e45d9a8937f62422b42144e935d94e",
+   "pkgpath": "Data/bc38f0d9576b74246a55b0503a65e2f2",
+   "size": 4584,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/bc38f0d9576b74246a55b0503a65e2f2"
+  },
+  {
+   "compression": 8,
+   "hash": "84d1c8fa392f76d36eacb7969dd93d89d6522da6",
+   "pkgpath": "Data/boot.config",
+   "size": 238,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/boot.config"
+  },
+  {
+   "compression": 8,
+   "hash": "99b4ce1ffc3d2ecbc9d82c0adda2f52d2bb2e0d3",
+   "pkgpath": "Data/c8f57f21803674998b0479caafc711de",
+   "size": 4596,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/c8f57f21803674998b0479caafc711de"
+  },
+  {
+   "compression": 8,
+   "hash": "14dcd76446706cbe36e1d5e2c868e75756f5d92e",
+   "pkgpath": "Data/cd15b3634b51f1544be3684e7b47905e",
+   "size": 4116,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/cd15b3634b51f1544be3684e7b47905e"
+  },
+  {
+   "compression": 8,
+   "hash": "236e104cd9621cafc04dd52e92a14fbb820a3d35",
+   "pkgpath": "Data/ce16cbdf0133941da9a3ece2f648686e",
+   "size": 4180,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/ce16cbdf0133941da9a3ece2f648686e"
+  },
+  {
+   "compression": 8,
+   "hash": "f349f4b46ed5baa87764f3d3670291b278e197fc",
+   "pkgpath": "Data/d0caf78fe7b4e472ba97a401e66b2883",
+   "size": 24336,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/d0caf78fe7b4e472ba97a401e66b2883"
+  },
+  {
+   "compression": 8,
+   "hash": "92a076a99fb0eff870454229aff4a56dcdbee559",
+   "pkgpath": "Data/d595e0960fbd2674682d5b28339ec27d",
+   "size": 4116,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/d595e0960fbd2674682d5b28339ec27d"
+  },
+  {
+   "compression": 8,
+   "hash": "8af63c50266d3664d4e4eeec9979bf3f58420f52",
+   "pkgpath": "Data/da2d29bc0f5b5934d8ce8c75a6362460",
+   "size": 4248,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/da2d29bc0f5b5934d8ce8c75a6362460"
+  },
+  {
+   "compression": 8,
+   "hash": "fbe66e6ea67ea9d6bc78f8be3b45c6168c262693",
+   "pkgpath": "Data/da2d29bc0f5b5934d8ce8c75a6362460.resS",
+   "size": 2097152,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/da2d29bc0f5b5934d8ce8c75a6362460.resS"
+  },
+  {
+   "compression": 8,
+   "hash": "78b727ee3b1a20b17e5d4095beb80be1ee2f41b2",
+   "pkgpath": "Data/dc6d5167fe4077046aaf670cd9612323",
+   "size": 7200,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/dc6d5167fe4077046aaf670cd9612323"
+  },
+  {
+   "compression": 8,
+   "hash": "28bf6cdd1075b0d60166a6890021a4412eb9870f",
+   "pkgpath": "Data/df6d0d1945ccf794fb6a4f2e22786f00",
+   "size": 9952,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/df6d0d1945ccf794fb6a4f2e22786f00"
+  },
+  {
+   "compression": 8,
+   "hash": "9db6bbd166463e3bfe50b5852673e08400db8858",
+   "pkgpath": "Data/e047f11998aa6b34bab569e9a94439c7",
+   "size": 4116,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/e047f11998aa6b34bab569e9a94439c7"
+  },
+  {
+   "compression": 8,
+   "hash": "1799919e736dabf465f0ee5d5401791a7b3292fc",
+   "pkgpath": "Data/e0bac48c51ec9644faa5e9b0276ea447",
+   "size": 4112,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/e0bac48c51ec9644faa5e9b0276ea447"
+  },
+  {
+   "compression": 8,
+   "hash": "481271bb2ae53bbe7baf13966a8dc4dc47fe94fd",
+   "pkgpath": "Data/e13af17fa63ac2a44ab73dc5004df9ab",
+   "size": 4124,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/e13af17fa63ac2a44ab73dc5004df9ab"
+  },
+  {
+   "compression": 8,
+   "hash": "ec84441b92e8d97d5af98d8471cc6593b3af63d6",
+   "pkgpath": "Data/e1d14b1382e0c6042a7b24844adc138c",
+   "size": 4112,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/e1d14b1382e0c6042a7b24844adc138c"
+  },
+  {
+   "compression": 8,
+   "hash": "4bf60033b4c6614fe97b9d1b329871e30bc9e81b",
+   "pkgpath": "Data/e3cde64c98c378c478b398f3c01b94a4",
+   "size": 4116,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/e3cde64c98c378c478b398f3c01b94a4"
+  },
+  {
+   "compression": 8,
+   "hash": "121f104bfe256a679f169e20d40f5915c74c61e6",
+   "pkgpath": "Data/e5ba524f59c9f034d859166366f23f00",
+   "size": 4588,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/e5ba524f59c9f034d859166366f23f00"
+  },
+  {
+   "compression": 8,
+   "hash": "922b896605150015cbb569699cc1b6de5b93163e",
+   "pkgpath": "Data/e717472e88d4c49a19e3e41a94660d5d",
+   "size": 6620,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/e717472e88d4c49a19e3e41a94660d5d"
+  },
+  {
+   "compression": 8,
+   "hash": "f136b7b4dbb7e00ce8c845e032b6485f5c07a823",
+   "pkgpath": "Data/f15a5135d961d9541b0b8cc7abf3d3d8",
+   "size": 4676,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/f15a5135d961d9541b0b8cc7abf3d3d8"
+  },
+  {
+   "compression": 8,
+   "hash": "c344d860cce9e4661ccb78e81950a4c769de7763",
+   "pkgpath": "Data/f6ba206d151ecc44b8f0fa47cf3a124b",
+   "size": 4116,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/f6ba206d151ecc44b8f0fa47cf3a124b"
+  },
+  {
+   "compression": 8,
+   "hash": "3ed67416c7a0241390a36a0ac8a867c154a7df1f",
+   "pkgpath": "Data/f894793afd9d9154d97c9e12beefd51b",
+   "size": 7696,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/f894793afd9d9154d97c9e12beefd51b"
+  },
+  {
+   "compression": 8,
+   "hash": "7326995c6992f29b636c826f109b15b8fb4ef475",
+   "pkgpath": "Data/f9f9c03e7cd1646f0a505fa277529081",
+   "size": 9308,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/f9f9c03e7cd1646f0a505fa277529081"
+  },
+  {
+   "compression": 8,
+   "hash": "fd3aa157982d94d480afa430393ea1745ee78706",
+   "pkgpath": "Data/fb45cbe28bc3ac44998bab753c6fab43",
+   "size": 4116,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/fb45cbe28bc3ac44998bab753c6fab43"
+  },
+  {
+   "compression": 8,
+   "hash": "c54396c41a06c5b8d394870b9531e5b2ab13a944",
+   "pkgpath": "Data/fd8f2985638521b4288ca8a7d4792d1c",
+   "size": 4592,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/fd8f2985638521b4288ca8a7d4792d1c"
+  },
+  {
+   "compression": 8,
+   "hash": "aef6f8aea99aceb9293e50822afce2733c758aa1",
+   "pkgpath": "Data/globalgamemanagers",
+   "size": 45312,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/globalgamemanagers"
+  },
+  {
+   "compression": 8,
+   "hash": "78d4ab25a4d46cda37e86f4659c78de4f3c5faec",
+   "pkgpath": "Data/globalgamemanagers.assets",
+   "size": 46248,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/globalgamemanagers.assets"
+  },
+  {
+   "compression": 8,
+   "hash": "49816977f02191e3c379402441fa21521cfb6188",
+   "pkgpath": "Data/level0",
+   "size": 30756,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/level0"
+  },
+  {
+   "compression": 8,
+   "hash": "571eb12d7aa87ae03ccce926de7eeb72c32917fb",
+   "pkgpath": "Data/level0.resS",
+   "size": 131232,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/level0.resS"
+  },
+  {
+   "compression": 8,
+   "hash": "014838e11625e36d1f9dd0932ab62b893dbbaf22",
+   "pkgpath": "Data/sharedassets0.assets",
+   "size": 20434320,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/sharedassets0.assets"
+  },
+  {
+   "compression": 8,
+   "hash": "02eb2c3c4339863330e65a6d3ed051610b57a5ac",
+   "pkgpath": "Data/sharedassets0.assets.resS",
+   "size": 12888760,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Data/sharedassets0.assets.resS"
+  },
+  {
+   "compression": 8,
+   "hash": "35e9a1ff08c51a514a03e49cae8773f016072297",
+   "pkgpath": "bin/Player.elf",
+   "size": 30968064,
+   "src": "C:/Users/Cabbibo/Desktop/Unity/ML1/Temp/StagingArea/Player.elf",
+   "xfrm_flags": {
+    "signed": {
+     "cert": "C:\\Users\\Cabbibo\\Desktop\\cert1\\TempSharedCert.cert"
+    },
+    "taildata": {
+     "debuggable": true,
+     "sbox": "USER",
+     "version": 3
+    }
+   },
+   "xfrm_hash": "89bd74b3ca3c695efc10baf9aa10e8f52e7bd569",
+   "xfrm_path": "C:/Users/Cabbibo/Desktop/Unity/ML1/.out/.cache/debug_lumin_clang-3.8_aarch64/bo.cabbi.lookstrange3-63fd78e1acd4914d\\Player.elf-87d26a6f765c9348",
+   "xfrm_size": 30968822
+  },
+  {
+   "compression": 8,
+   "hash": "5925de9f4d7b83c65d1fd7b25ced5f0bf8c27e73",
+   "pkgpath": "bin/libc++_shared.so",
+   "size": 976832,
+   "src": "C:/Users/Cabbibo/MagicLeap/mlsdk/v0.16.0/lumin/stl/libc++/lib/libc++_shared.so",
+   "xfrm_flags": {
+    "signed": {
+     "cert": "C:\\Users\\Cabbibo\\Desktop\\cert1\\TempSharedCert.cert"
+    },
+    "taildata": {
+     "debuggable": true,
+     "sbox": "USER",
+     "version": 3
+    }
+   },
+   "xfrm_hash": "303f2e9ff28ce09c215531dcb5835de9c7a4735e",
+   "xfrm_path": "C:/Users/Cabbibo/Desktop/Unity/ML1/.out/.cache/debug_lumin_clang-3.8_aarch64/bo.cabbi.lookstrange3-63fd78e1acd4914d\\libc++_shared.so-ffb1029af94c9523",
+   "xfrm_size": 977590
+  },
+  {
+   "compression": 8,
+   "hash": "bff75574ebf5e56c15e97f4030182259f1ca2545",
+   "pkgpath": "manifest.xml",
+   "size": 1683,
+   "src": "C:\\Users\\Cabbibo\\Desktop\\Unity\\ML1\\Temp\\StagingArea\\manifest.xml",
+   "xfrm_flags": {
+    "manifest": {
+     "cert_hash": "ecaeb739fb985f28295a2611c5f14f39cb91342c",
+     "developer_id": "temporarycertificates"
+    }
+   },
+   "xfrm_hash": "714f702656e114b584b165e77f07c318d98c6c97",
+   "xfrm_path": "C:/Users/Cabbibo/Desktop/Unity/ML1/.out/.cache/debug_lumin_clang-3.8_aarch64/bo.cabbi.lookstrange3-63fd78e1acd4914d\\manifest.xml-87d26a6f765c9348",
+   "xfrm_size": 1680
+  }
+ ],
+ "pkgflags": {
+  "signed": {
+   "cert": "C:\\Users\\Cabbibo\\Desktop\\cert1\\TempSharedCert.cert"
+  },
+  "taildata": {
+   "debuggable": true,
+   "devcert": "C:\\Users\\Cabbibo\\Desktop\\cert1\\TempSharedCert.cert",
+   "sbox": "USER",
+   "version": 3
+  }
+ }
+}

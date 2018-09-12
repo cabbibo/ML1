@@ -1,0 +1,242 @@
+﻿#pragma kernel GetDepth
+#pragma kernel GetFinalDist
+#pragma kernel GetNormal
+
+
+int _VertCount;
+int _TriCount;
+//int3 _VolDim;
+//int _VolDim;
+int _Count;
+int _CurrentTri;
+
+float3 _Dimensions;
+float3 _Center;
+
+float3 _Extents;
+
+float4x4 _Transform;
+float4x4 _InverseTransform;
+
+  struct Vert{
+    float3 pos;
+    float3 nor;
+    float2 uv;
+  };
+
+
+struct SDF {
+  float  dist;
+  float3 nor;
+  float  ao;
+  float  pn; // positive or negative (this doesn't really work yet lol)
+  float2 debug;
+};
+#include "../Chunks/noise.cginc"
+
+
+
+
+RWStructuredBuffer<Vert> vertBuffer;
+RWStructuredBuffer<int> triBuffer;
+RWStructuredBuffer<SDF> volumeBuffer;
+
+
+#define NR_THREADS 64
+
+
+
+float dot2( in float3 v ) { return dot(v,v); }
+float2 udTriangle( float3 p, float3 a, float3 b, float3 c )
+{
+    float3 ba = b - a; float3 pa = p - a;
+    float3 cb = c - b; float3 pb = p - b;
+    float3 ac = a - c; float3 pc = p - c;
+    float3 nor = cross( ba, ac );
+
+    float dist =  sqrt(
+    (sign(dot(cross(ba,nor),pa)) +
+     sign(dot(cross(cb,nor),pb)) +
+     sign(dot(cross(ac,nor),pc))<2.0)
+     ?
+     min( min(
+     dot2(ba*clamp(dot(ba,pa)/dot2(ba),0.0,1.0)-pa),
+     dot2(cb*clamp(dot(cb,pb)/dot2(cb),0.0,1.0)-pb) ),
+     dot2(ac*clamp(dot(ac,pc)/dot2(ac),0.0,1.0)-pc) )
+     :
+     dot(nor,pa)*dot(nor,pa)/dot2(nor) );
+
+
+    float m = dot( nor , normalize(p-a));
+    if( m < 0){
+      m = 1;
+    }else{
+      m = -1;
+    }
+
+    return float2( dist , m );
+
+
+
+}
+
+float3 calcNormal( in float3 pos , float3 p1 ,  float3 p2 ,float3 p3 ){
+
+
+        float3 epsx = float3( _Extents.x / _Dimensions.x,0,0);
+        float3 epsy = float3( 0,_Extents.y/ _Dimensions.y,0);
+        float3 epsz = float3( 0,0,_Extents.z/ _Dimensions.z);
+        float3 nor = float3(
+            (udTriangle(pos+epsx,p1,p2,p3).x -udTriangle(pos-epsx,p1,p2,p3).x)/epsx.x,
+            (udTriangle(pos+epsy,p1,p2,p3).x -udTriangle(pos-epsy,p1,p2,p3).x)/epsy.y,
+            (udTriangle(pos+epsz,p1,p2,p3).x -udTriangle(pos-epsz,p1,p2,p3).x)/epsz.z );
+        return normalize(nor);
+
+      }
+
+
+
+
+[numthreads(NR_THREADS,1,1)]
+void GetDepth(uint threadID : SV_GroupIndex, uint3 u3GroupID : SV_GroupID, uint3 id : SV_DispatchThreadID) {
+
+
+  uint pID = threadID + u3GroupID.x * NR_THREADS;
+  float fID = float(pID);
+
+  if( pID < uint(_Count)){
+    uint xID = pID % _Dimensions.x;
+    uint yID = (pID / _Dimensions.x) % _Dimensions.y;
+    uint zID = pID / (_Dimensions.x * _Dimensions.y);
+
+    float x = float(xID) / _Dimensions.x;
+    float y = float(yID) / _Dimensions.y;
+    float z = float(zID) / _Dimensions.z;
+
+    int flip = pID % 2;
+
+    // cell position
+
+    float3 tmpPos = float3(x,y,z)-float3(.5 , .5 , .5);
+
+    tmpPos *= 2;
+    tmpPos *= _Extents;
+    tmpPos += _Center;
+
+    tmpPos = mul( _Transform , float4(tmpPos ,1)).xyz;
+    float3 p = tmpPos;//(float3(x,y,z)-float3(.5 , .5 , .5)) * _Extents * 2+ _Center;//_Extents;
+
+    // verts of triangle
+    float3 p1 = vertBuffer[triBuffer[_CurrentTri+0]].pos;
+    float3 p2 = vertBuffer[triBuffer[_CurrentTri+1]].pos;
+    float3 p3 = vertBuffer[triBuffer[_CurrentTri+2]].pos;
+
+    float2 dist = udTriangle( p , p1,p2,p3);
+
+
+
+    SDF sdf = volumeBuffer[pID];
+
+    float minDist = sdf.dist;
+    float pn = sdf.pn;
+    float3 nor = sdf.nor;
+
+    if( dist.x < abs(minDist) ){
+      minDist = abs(dist.x);//* dist.y;
+      pn = dist.y;
+      nor = normalize(mul( _InverseTransform , float4(p-(p1+p2+p3)/3,0)).xyz);//normalize(cross(p2-p1, p3-p1));
+      //nor = calcNormal(p,p1,p2,p3);
+    }
+
+    sdf.dist =minDist;
+    sdf.nor = nor;//float3( 0, 1, 0);
+    sdf.pn = pn;
+    sdf.debug = float2(1,z);
+    volumeBuffer[pID]=  sdf;
+
+  }
+
+}
+
+
+
+
+float GetID( float x , float y , float z ){
+
+  if( x >= _Dimensions.x || x < 0 || y >= _Dimensions.y  || y < 0 ||z >=_Dimensions.z || z < 0  ){
+    return -1;
+  }else{
+    return x + y *_Dimensions.x + z * _Dimensions.x*_Dimensions.y;
+  }
+}
+
+
+[numthreads(NR_THREADS,1,1)]
+void GetFinalDist (uint threadID : SV_GroupIndex, uint3 u3GroupID : SV_GroupID, uint3 id : SV_DispatchThreadID) {
+
+
+  int pID = threadID + u3GroupID.x * NR_THREADS;
+
+  if(pID < _Count){
+
+    // this is where would hopefully make positive and negative work
+    volumeBuffer[pID].dist = volumeBuffer[pID].dist; //* volumeBuffer[pID].pn;
+
+  }
+
+}
+
+
+[numthreads(NR_THREADS,1,1)]
+void GetNormal (uint threadID : SV_GroupIndex, uint3 u3GroupID : SV_GroupID, uint3 id : SV_DispatchThreadID) {
+
+
+  uint pID = threadID + u3GroupID.x * NR_THREADS;
+float fID = float(pID);
+  if(pID < uint(_Count) ){
+
+
+
+    SDF sdf = volumeBuffer[pID];
+
+
+    float xID =  fID % _Dimensions.x;
+    float yID = (fID / (_Dimensions.x)) % _Dimensions.y;
+    float zID =  fID / (_Dimensions.x * _Dimensions.y);
+
+    int x0 = int(GetID(xID + 1 , yID , zID));
+    int x1 = int(GetID(xID - 1 , yID , zID));
+
+    int y0 = int(GetID(xID , yID + 1 , zID));
+    int y1 = int(GetID(xID , yID - 1 , zID));
+
+    int z0 = int(GetID(xID , yID , zID + 1));
+    int z1 = int(GetID(xID , yID , zID - 1));
+
+    float X0 = (x0 >= 0) ? volumeBuffer[x0].dist : sdf.dist;
+    float X1 = (x1 >= 0) ? volumeBuffer[x1].dist : sdf.dist;
+
+    float Y0 = (y0 >= 0) ? volumeBuffer[y0].dist : sdf.dist;
+    float Y1 = (y1 >= 0) ? volumeBuffer[y1].dist : sdf.dist;
+
+    float Z0 = (z0 >= 0) ? volumeBuffer[z0].dist : sdf.dist;
+    float Z1 = (z1 >= 0) ? volumeBuffer[z1].dist : sdf.dist;
+
+
+    float3 n = float3(
+        (X0 - X1)/ (_Extents.x/_Dimensions.x),
+        (Y0 - Y1)/ (_Extents.y/_Dimensions.y),
+        (Z0 - Z1)/ (_Extents.z/_Dimensions.z)
+      ) * 1000;
+
+    if( length(n) > 0){
+      n = normalize(n);//normalize(n);
+    }else{
+      n = float3(0,0,1);
+    }
+  // volumeBuffer[pID].nor = n;
+    //volumeBuffer[pID].dist = 1000;
+  }
+
+}
+

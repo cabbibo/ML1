@@ -1,0 +1,226 @@
+﻿#pragma kernel CSMain
+#pragma kernel Constraint
+
+
+#include "../Chunks/noise.cginc"
+float _Delta;
+float _Time;
+int _Count;
+int _PassID;
+float _SpringDistance;
+
+
+float3 _StartPosition;
+float3 _EndPosition;
+//int _NumVerts;
+int _Reset;
+
+struct Vert{
+  float3 pos;
+  float3 oPos;
+  float3 nor;
+  float3 tangent;
+  float3 bitangent;
+  float idDown;
+  float idUp;
+  float2 uv;
+  float debug;
+};
+
+RWStructuredBuffer<Vert> vertBuffer;
+
+float3 getVel( float3 p1 , float3 p2 ){
+
+  float3 v = p1 - p2;
+
+  if( length( v ) > .5){ v = normalize( v ) *.5; }
+  return v;
+  
+}
+
+float3 springForce( float3 p1 , float3 p2 , float sl ){
+  float3 dif = p1 - p2;
+  float l = length(dif);
+
+  if( l > 0 ){
+    float d = l - sl;
+    return normalize( dif ) * d;
+  }else{
+    return float3(0,0,0);
+  }
+
+}
+#define NR_THREADS 128
+
+[numthreads(NR_THREADS,1,1)]
+void CSMain (uint threadID : SV_GroupIndex, uint3 u3GroupID : SV_GroupID, uint3 id : SV_DispatchThreadID) {
+
+  //int pID = id.x + id.y * gridX + id.z * gridX * gridY;
+
+  int pID = threadID + u3GroupID.x * NR_THREADS + 1;
+
+  if( pID < _Count+1){
+
+    Vert vert = vertBuffer[pID];
+
+    float3 force = float3( 0 , -1, 0.0 );
+
+    // Inertia: objects in motion stay in motion.
+    float3 vel = getVel( vert.pos , vert.oPos);
+
+
+
+    /*if( vert.idDown >= 0 && vert.idUp >= 0 ){
+
+      float3 pUp = vertBuffer[int(vert.idUp)].oPos;
+      float3 pDo = vertBuffer[int(vert.idDown)].oPos;
+      float3 pAve = (pUp + pDo)/2;
+
+      force += springForce(vert.pos , pUp , _SpringDistance ) * 1000;
+      force += springForce(vert.pos , pDo , _SpringDistance ) * 1000;
+
+     //force -= (vert.pos - pUp) * 1000;
+     //force -= (vert.pos - pDo) * 1000;
+     
+    }*/
+
+
+    if( vert.idDown >= 0  ){
+      float3 pDo = vertBuffer[int(vert.idDown)+1].pos;
+      //force += springForce(vert.pos , pDo , _SpringDistance ) * 10;
+
+    }
+
+    if( vert.idUp >= 0 ){
+
+      float3 pUp = vertBuffer[int(vert.idUp)+1].pos;
+      //force += springForce(vert.pos , pUp , _SpringDistance ) * 10;
+
+    }
+
+        float3 acceleration = force;
+
+    if( length( acceleration ) > 2 ){
+      acceleration = normalize(acceleration) * 2;
+    }
+ 
+
+    bool tb = false;
+    // If we are at the bottom, 
+    if( vert.idDown < 0 ){ 
+      vert.pos = _StartPosition.xyz; 
+      vert.oPos = _StartPosition.xyz;
+      tb = true;
+    }
+
+     // If we are at the bottom, 
+    if( vert.idUp < 0 ){ 
+      vert.pos = _EndPosition.xyz; 
+      vert.oPos = _EndPosition.xyz;
+      tb = true;
+    }
+
+
+    if( _Delta  < .1 && tb == false ){
+
+      float dampening = .97;//.99999;// - vert.life * .01;
+      float3 next = vert.pos + vel * dampening + acceleration * _Delta * _Delta;
+
+      vert.oPos = vert.pos;
+      vert.pos = next;
+
+    
+ 
+    }
+    if(_Reset == 1){
+        vert.pos = -(_StartPosition.xyz - _EndPosition.xyz )  * vert.uv.x + _StartPosition;
+        vert.oPos = -(_StartPosition.xyz - _EndPosition.xyz )  * vert.uv.x + _StartPosition;
+    }
+
+    vertBuffer[pID] = vert;
+
+  }
+  
+}
+
+
+
+
+
+[numthreads(NR_THREADS,1,1)]
+void Constraint(uint threadID : SV_GroupIndex, uint3 u3GroupID : SV_GroupID, uint3 id : SV_DispatchThreadID) {
+  
+  // Get the id using thread / group indices
+  uint pID = threadID + u3GroupID.x * NR_THREADS ;
+
+  // Since we are doing 2 passes for verlet, multiply by 2 
+  // to get both the vertices!
+  pID = pID * 2+1;
+  pID = pID + _PassID;
+
+  if( pID < uint(_Count) ){
+    Vert v1 = vertBuffer[pID];
+
+    // If we are are the end of the hair, no need to do verlet
+    if( int(v1.idUp) > 0 ){
+      Vert v2 = vertBuffer[v1.idUp];
+
+
+
+
+      float3 dif = v1.pos - v2.pos;
+      float l = length( dif );
+
+      //float n = noise( v1.pos * 20 );
+
+      float difference = 0;
+      
+      // We want to make sure that l isn't zero, 
+      // or we will get some NaNs
+      if( l > 0.001 ){
+        difference = ( _SpringDistance - l ) / l;
+      }
+
+      // Here is where the actual verlet goes down!
+      float3 translate = dif * .6 * difference;
+      
+      float3 t1 = 1 * translate;
+      float3 t2 = 1 * translate;
+      
+      float3 n1 = v1.pos + t1;
+      float3 n2 = v2.pos - t2;
+
+
+      if( v2.idUp >= 0 ){
+        if( v1.idDown < 0 ){
+          v1.pos = v1.pos;
+          v2.pos = n2 - t2;
+        }else{
+          // move towards
+          v1.pos = n1;
+          v2.pos = n2;
+        }
+        
+      }else{
+        // just move towards
+        v1.pos = n1+t1;
+        v2.pos = v2.pos;
+
+      }
+              // Set both the values in the proper buffer location!
+      vertBuffer[ pID ] = v1;
+      vertBuffer[ pID + 1 ] = v2;
+
+
+
+    }
+
+
+
+  }
+
+
+
+
+
+}

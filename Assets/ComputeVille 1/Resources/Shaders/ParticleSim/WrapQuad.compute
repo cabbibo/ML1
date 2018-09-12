@@ -1,0 +1,147 @@
+﻿#pragma kernel CSMain
+#pragma kernel Set
+
+float _DT;
+float _Time;
+
+int _ParticleCount;
+int _VolDim;
+float3 _Pos;
+float3 _Dir = float3(0,1,0);
+float3 _Vel;
+float3 _Center;
+float3 _Extents;
+
+
+float3 _Nor;
+float2 _Size;
+int _Width;
+int _Height;
+
+
+float _Volume;
+
+
+#include "../Chunks/snoise.cginc"
+#include "../Chunks/noise.cginc"
+#include "../Chunks/sdfStruct.cginc"
+
+float4x4 transform;
+
+
+
+struct Vert{
+  float3 pos;
+  float3 nor;
+  float2 uv;
+};
+
+
+
+
+RWStructuredBuffer<Vert> vertBuffer;
+
+Texture3D<float4> sdfTexture;
+
+SamplerState MyLinearClampSampler;
+
+#include "../Chunks/curlNoise.cginc"
+
+
+#define NR_THREADS 128
+
+[numthreads(NR_THREADS,1,1)]
+void CSMain (uint threadID : SV_GroupIndex, uint3 u3GroupID : SV_GroupID, uint3 id : SV_DispatchThreadID) {
+
+
+  uint pID = threadID + u3GroupID.x * NR_THREADS;
+
+  uint flip = pID % 2;
+
+  if( pID < uint(_ParticleCount) ){
+
+    Vert vert = vertBuffer[ pID ];
+
+    int row = pID % 100;
+    int col = pID / 100;
+
+    int up = row +1;
+    int down = row -1;
+    int left = col -1;
+    int right = col +1;
+
+    if( col < 100 ){
+
+    }
+
+    float3 tmpPos = vert.pos - _Center;
+
+    if( abs(_Extents.x) > .1 && abs(_Extents.y) > .1 && abs(_Extents.z) > .1){
+        float3 nPos = tmpPos / _Extents;
+
+
+        float3 val = (nPos + float3(1,1,1))/2;
+
+        float4 field = sdfTexture.SampleLevel(MyLinearClampSampler,val,0);
+
+             float3 nor = -field.yzw;
+
+           //  float fDist = (field.x -.1);
+
+
+             float3 fNor = nor;// -field.nor;// * 2 -1;
+             vert.pos += -vert.nor* (field.x-.1) * .03;
+             vert.nor = lerp(vert.nor,-fNor,.01);
+
+    }
+
+
+
+    vertBuffer[pID] = vert;
+
+  }
+
+
+
+}
+
+
+
+[numthreads(NR_THREADS,1,1)]
+void Set(uint threadID : SV_GroupIndex, uint3 u3GroupID : SV_GroupID, uint3 id : SV_DispatchThreadID) {
+
+
+  uint pID = threadID + u3GroupID.x * NR_THREADS;
+
+  if( pID < uint(_ParticleCount) ){
+
+    Vert vert = vertBuffer[ pID ];
+
+    int row = pID % _Width;
+    int col = pID / _Width;
+
+    float3 x = cross(_Nor,float3(0,1,0));
+
+    if( length(x) == 0 ){
+      x = cross(_Nor,float3(0,0,1));
+    }
+
+    x=normalize(x);
+    float3 y=normalize(cross(x,_Nor));
+
+    vert.pos = _Pos;
+
+    vert.pos += x * _Size.x * ((float(row) / float(_Width)) - 0.5);
+    vert.pos += y * _Size.y * ((float(col) / float(_Height)) - 0.5);
+
+    vert.nor = _Nor;
+
+
+    vertBuffer[pID] = vert;
+
+  }
+
+
+
+}
+

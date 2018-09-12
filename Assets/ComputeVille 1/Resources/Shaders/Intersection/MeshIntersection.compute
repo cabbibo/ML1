@@ -1,0 +1,130 @@
+﻿#pragma kernel GetIntersection
+#pragma kernel Gather
+
+
+int _NumVerts;
+int _NumTris;
+float3 _IntersectionPosition;
+
+float4x4 transform;
+
+struct Vert{
+  float3 pos;
+  float3 nor;
+  float2 uv;
+};
+
+
+
+RWStructuredBuffer<Vert> vertBuffer;
+RWStructuredBuffer<int> triBuffer;
+
+
+RWStructuredBuffer<float4> dataBuffer;
+RWStructuredBuffer<float4> gatherBuffer;
+
+
+#define NR_THREADS 512
+
+
+
+float dot2( in float3 v ) { return dot(v,v); }
+float2 udTriangle( float3 p, float3 a, float3 b, float3 c )
+{
+    float3 ba = b - a; float3 pa = p - a;
+    float3 cb = c - b; float3 pb = p - b;
+    float3 ac = a - c; float3 pc = p - c;
+    float3 nor = cross( ba, ac );
+
+    float dist =  sqrt(
+    (sign(dot(cross(ba,nor),pa)) +
+     sign(dot(cross(cb,nor),pb)) +
+     sign(dot(cross(ac,nor),pc))<2.0)
+     ?
+     min( min(
+     dot2(ba*clamp(dot(ba,pa)/dot2(ba),0.0,1.0)-pa),
+     dot2(cb*clamp(dot(cb,pb)/dot2(cb),0.0,1.0)-pb) ),
+     dot2(ac*clamp(dot(ac,pc)/dot2(ac),0.0,1.0)-pc) )
+     :
+     dot(nor,pa)*dot(nor,pa)/dot2(nor) );
+
+
+    float m = dot( nor , normalize(p-a));
+    if( m < 0){
+      m = 1;
+    }else{
+      m = -1;
+    }
+
+    return float2( dist , m );
+
+
+
+}
+
+
+#include "../Chunks/interlockedAddFunctions.cginc"
+
+
+[numthreads(NR_THREADS,1,1)]
+void GetIntersection(uint threadID : SV_GroupIndex, uint3 u3GroupID : SV_GroupID, uint3 id : SV_DispatchThreadID) {
+
+
+
+
+  resetValue( threadID );
+
+      if( threadID == 0 ){
+      dataBuffer[ u3GroupID.x ] = interlockedFullValue;
+    }
+  uint pID = threadID + u3GroupID.x * NR_THREADS;
+
+  float4 info = float4(-1,-1,-1,-1);
+
+  if( pID < (uint)_NumTris){
+
+    int t1 = triBuffer[pID*3+0];
+    int t2 = triBuffer[pID*3+1];
+    int t3 = triBuffer[pID*3+2];
+
+    float3 p1 = vertBuffer[t1].pos;
+    float3 p2 = vertBuffer[t2].pos;
+    float3 p3 = vertBuffer[t3].pos;
+
+    float2 dist = udTriangle( _IntersectionPosition , p1,p2,p3);
+
+    info = float4(abs(dist.x),t1,t2,t3);
+
+  }
+
+    interlockedClosestLength( info , threadID );
+
+    if( threadID == 0 ){
+      dataBuffer[ u3GroupID.x ] = interlockedFullValue;
+    }
+
+}
+
+[numthreads(NR_THREADS,1,1)]
+void Gather (uint threadID : SV_GroupIndex, uint3 u3GroupID : SV_GroupID, uint3 id : SV_DispatchThreadID) {
+
+  resetValue( threadID );
+  //int pID = id.x + id.y * gridX + id.z * gridX * gridY;
+
+  int pID = threadID;
+
+
+  //interlockedAddFloat4( floatBuffer[threadID] , threadID );
+
+  float4 value = dataBuffer[threadID];
+
+  if( length( value ) == 0 ){ value = float4(1000000,100000,100000,100000); }
+  interlockedClosestLength( value , threadID);
+
+  if( threadID == 0 ){
+    gatherBuffer[ 0 ] = interlockedFullValue;
+  }
+
+
+}
+

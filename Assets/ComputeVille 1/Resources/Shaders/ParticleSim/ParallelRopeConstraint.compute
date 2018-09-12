@@ -1,0 +1,79 @@
+﻿#pragma kernel CSMain
+#pragma kernel Constraint
+
+
+#include "../Chunks/noise.cginc"
+float _Delta;
+float _Time;
+int _Count;
+float _SpringDistance;
+
+struct Vert{
+  float3 pos;
+  float3 oPos;
+  float3 nor;
+  float idDown;
+  float idUp;
+  float2 uv;
+  float3 debug;
+};
+
+RWStructuredBuffer<Vert> rope1;
+RWStructuredBuffer<Vert> rope2;
+
+float3 getVel( float3 p1 , float3 p2 ){
+
+  float3 v = p1 - p2;
+
+  if( length( v ) > .5){ v = normalize( v ) *.5; }
+  return v;
+  
+}
+
+#define NR_THREADS 64
+
+
+[numthreads(NR_THREADS,1,1)]
+void Constraint(uint threadID : SV_GroupIndex, uint3 u3GroupID : SV_GroupID, uint3 id : SV_DispatchThreadID) {
+  
+  // Get the id using thread / group indices
+  uint pID = threadID + u3GroupID.x * NR_THREADS;
+
+
+
+  if( pID < uint(_Count) ){
+      Vert v1 = rope1[pID];
+      Vert v2 = rope2[pID];
+
+      float3 dif = v1.pos - v2.pos;
+      float l = length( dif );
+
+      //float n = noise( v1.pos * 20 );
+
+      float difference = 0;
+      
+      // We want to make sure that l isn't zero, 
+      // or we will get some NaNs
+      if( l > 0 ){
+        difference = ( _SpringDistance - l ) / l;
+      }
+
+      // Here is where the actual verlet goes down!
+      float3 translate = dif * .6 * difference;
+      
+      float3 t1 = 1 * translate;
+      float3 t2 = 1 * translate;
+      
+      float3 n1 = v1.pos + t1;
+      float3 n2 = v2.pos - t2;
+
+      v1.pos = n1;
+      v2.pos = n2;
+
+      rope1[pID] = v1;
+      rope2[pID] = v2;
+
+
+  }
+
+}

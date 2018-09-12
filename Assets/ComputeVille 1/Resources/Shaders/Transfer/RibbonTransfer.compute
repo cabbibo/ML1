@@ -1,0 +1,128 @@
+﻿
+
+#pragma kernel CSMain
+struct Transfer{
+    float3 pos;
+    float3 nor;
+    float2 uv;
+};
+
+struct Trail{
+    float3 pos;
+    float id;
+};
+
+
+RWStructuredBuffer<Transfer> transferBuffer;
+RWStructuredBuffer<Trail> trailBuffer;
+
+int _VertsPerParticle;
+int _Length;
+
+float3 _CameraUp;
+float3 _CameraRight;
+
+#include "../Chunks/cubicCurve.cginc"
+
+float3 cubicFromValue( in float val , in int particleID, out float3 upPos , out float3 doPos ){
+
+  float3 p0 = float3( 0. , 0. , 0. );
+  float3 v0 = float3( 0. , 0. , 0. );
+  float3 p1 = float3( 0. , 0. , 0. );
+  float3 v1 = float3( 0. , 0. , 0. );
+
+  float3 p2 = float3( 0. , 0. , 0. );
+
+  float vPP = float(_VertsPerParticle);
+
+  float base = val * (vPP-1);
+
+  int baseUp   = floor( base );
+  int baseDown = ceil( base );
+  float amount = base - float(baseUp);
+
+
+  int bladeBase = _VertsPerParticle * particleID;
+
+  if( baseUp == 0 ){
+
+    p0 = trailBuffer[ baseUp       + bladeBase ].pos;
+    p1 = trailBuffer[ baseDown     + bladeBase ].pos;
+    p2 = trailBuffer[ baseDown + 1 + bladeBase ].pos;
+
+    v1 = .5 * ( p2 - p0 );
+
+  }else if( baseDown == vPP-1 ){
+
+    p0 = trailBuffer[ baseUp     + bladeBase ].pos;
+    p1 = trailBuffer[ baseDown   + bladeBase ].pos;
+    p2 = trailBuffer[ baseUp - 1 + bladeBase ].pos;
+
+    v0 = .5 * ( p1 - p2 );
+
+  }else{
+
+    p0 = trailBuffer[ baseUp   + bladeBase ].pos;
+    p1 = trailBuffer[ baseDown + bladeBase ].pos;
+
+
+    float3 pMinus = float3(0,0,0);
+
+    pMinus = trailBuffer[ baseUp   - 1 + bladeBase ].pos;
+    p2 =     trailBuffer[ baseDown + 1 + bladeBase ].pos;
+
+    v1 = .5 * ( p2 - p0 );
+    v0 = .5 * ( p1 - pMinus );
+
+  }
+
+  float3 c0 = p0;
+  float3 c1 = p0 + v0/3.;
+  float3 c2 = p1 - v1/3.;
+  float3 c3 = p1;
+
+  float3 pos = cubicCurve( amount , c0 , c1 , c2 , c3 );
+
+  upPos = cubicCurve( amount  + .1 , c0 , c1 , c2 , c3 );
+  doPos = cubicCurve( amount  - .1 , c0 , c1 , c2 , c3 );
+
+  return pos;
+
+}
+
+#define NR_THREADS 128
+[numthreads(NR_THREADS,1,1)]
+void CSMain (uint threadID : SV_GroupIndex, uint3 u3GroupID : SV_GroupID) {
+
+    int pID = threadID + u3GroupID.x * NR_THREADS;
+
+    int fID = pID / 2;
+    int particleID = fID / _Length;
+
+    int row = fID %  _Length;
+    int col = pID % 2;
+
+    float rowVal = float(row) / float(_Length);
+
+    float3 upPos; float3 doPos;
+
+    float3 pos = cubicFromValue( rowVal , particleID , upPos , doPos );
+
+    float3 d = normalize(upPos - pos);
+    float3 x = normalize(cross( d , _CameraUp) );
+    float3 y = normalize(cross( x , d));
+
+ 
+
+    float r = .02;
+
+    float3 fPos = pos +  y * r * (float(col)-.5);
+
+    float2 fUV = float2( rowVal , float(col) );
+    float3 fNor = x;//normalize( outVec );
+
+    transferBuffer[pID].pos = fPos;
+    transferBuffer[pID].nor = fNor;
+    transferBuffer[pID].uv = fUV;
+
+}

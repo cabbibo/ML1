@@ -1,0 +1,49 @@
+﻿
+
+#pragma kernel CSMain
+
+  struct Vert{
+    float3 pos;
+    float3 vel;
+    float3 ogPos;
+    float2 uv;
+    float life;  // lifetime of particle
+    float cap;   // connection information
+    float3 debug; //
+  };
+
+
+struct Trail{
+    float3 pos;
+    float id;
+};
+
+
+StructuredBuffer<Vert> vertBuffer;
+RWStructuredBuffer<Trail> trailBuffer;
+
+int _NumVertsPerTrail;
+
+#include "../Chunks/noise.cginc"
+
+#define NR_THREADS 64
+[numthreads(NR_THREADS,1,1)]
+void CSMain (uint threadID : SV_GroupIndex, uint3 u3GroupID : SV_GroupID) {
+    int pID = threadID + u3GroupID.x * NR_THREADS;
+
+
+    int vID = pID;
+
+    Vert vert = vertBuffer[vID];
+
+    int baseID = vID * _NumVertsPerTrail;
+
+    trailBuffer[baseID].pos = vert.pos;
+    trailBuffer[baseID].id  = 0;
+
+    for( int i = _NumVertsPerTrail-1; i > 0; i-- ){
+        trailBuffer[baseID+i].pos = lerp( trailBuffer[baseID+i].pos , trailBuffer[baseID+i-1].pos , .03 );
+        trailBuffer[baseID+i].id = i;
+    }
+
+}

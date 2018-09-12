@@ -1,0 +1,65 @@
+﻿
+
+#pragma kernel CSMain
+
+  struct Vert{
+    float3 pos;
+    float3 vel;
+    float3 ogPos;
+    float2 uv;
+    float life;  // lifetime of particle
+    float cap;   // connection information
+    float3 debug; //
+  };
+
+
+struct Transfer{
+    float3 pos;
+    float3 nor;
+    float2 uv;
+};
+
+
+StructuredBuffer<Vert> vertBuffer;
+RWStructuredBuffer<Transfer> transferBuffer;
+
+int _ID;
+float3 _CameraUp;
+float3 _CameraRight;
+
+#include "../Chunks/noise.cginc"
+
+#define NR_THREADS 64
+[numthreads(NR_THREADS,1,1)]
+void CSMain (uint threadID : SV_GroupIndex, uint3 u3GroupID : SV_GroupID) {
+    int pID = threadID + u3GroupID.x * NR_THREADS;
+
+
+    Vert vert = vertBuffer[pID/4];
+
+    float3 pos = vert.pos.xyz;
+
+
+    float scale = .03;
+    float3 x = _CameraRight;
+    float3 y = _CameraUp;
+    float3 normal = _CameraUp;
+    Transfer transfer;
+
+    int vID = pID % 4;
+    float right = float(vID % 2);
+    float up    = float(vID / 2);
+
+    float v1 = float3( pID , pID * 100 , pID * 10000);
+    float v2 = float3( pID *100000 , pID * 10 , pID * 10000);
+    float v3 = float3( pID*1000 , pID * 400 , pID * 500);
+
+    float3 nP = float3(noise(v1) , noise(v2),noise(v3));
+
+    transfer = transferBuffer[pID];
+    transfer.pos =  pos + scale * (( right -.5) * x + (up-.5) * y);
+    transfer.nor = normal;
+    transfer.uv = float2(right, up);
+    transferBuffer[pID] = transfer;
+
+}

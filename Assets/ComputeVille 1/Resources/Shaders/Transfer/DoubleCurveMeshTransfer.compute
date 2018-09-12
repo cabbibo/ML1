@@ -1,0 +1,158 @@
+﻿
+#pragma kernel CSMain
+
+struct Vert{
+    float3 pos;
+    float3 nor;
+    float3 tan;
+    float2 uv;
+    float debug;
+};
+
+
+struct Curve{
+  float3 pos;
+  float3 oPos;
+  float3 nor;
+  float idDown;
+  float idUp;
+  float2 uv;
+  float3 debug;
+};
+
+int _Count;
+int _CurveCount;
+float _ModelLength;
+
+
+
+RWStructuredBuffer<Vert> transferBuffer;
+RWStructuredBuffer<Vert> vertBuffer;
+
+RWStructuredBuffer<Curve> curveBuffer1;
+RWStructuredBuffer<Curve> curveBuffer2;
+
+
+#include "../Chunks/cubicCurve.cginc"
+
+
+float3 getCurveValue( int id , int whichCurve){
+  if( whichCurve == 0 ){
+    return curveBuffer1[id].pos;
+  }else{
+    return curveBuffer2[id].pos;
+  }
+}
+
+float3 cubicFromValue( in int whichCurve , in float val , out float3 upPos , out float3 doPos ){
+
+
+  float3 p0 = float3( 0. , 0. , 0. );
+  float3 v0 = float3( 0. , 0. , 0. );
+  float3 p1 = float3( 0. , 0. , 0. );
+  float3 v1 = float3( 0. , 0. , 0. );
+
+  float3 p2 = float3( 0. , 0. , 0. );
+
+
+  float base = val * (float(_CurveCount)-1.);
+  float baseUp   = floor( base );
+  float baseDown = ceil( base );
+  float amount = base - baseUp;
+
+
+  if( baseUp == 0. ){
+
+    p0 = getCurveValue( int( baseUp )         , whichCurve);
+    p1 = getCurveValue( int( baseDown )       , whichCurve);
+    p2 = getCurveValue( int( baseDown + 1. )  , whichCurve);
+
+
+    v1 = .5 * ( p2 - p0 );
+
+  }else if( baseDown == float(_CurveCount-1) ){
+
+    p0 = getCurveValue( int( baseUp )       , whichCurve);
+    p1 = getCurveValue( int( baseDown )     , whichCurve);
+    p2 = getCurveValue( int( baseUp - 1. )  , whichCurve);
+
+    v0 = .5 * ( p1 - p2 );
+
+  }else{
+
+    p0 = getCurveValue( int( baseUp )    , whichCurve);
+    p1 = getCurveValue( int( baseDown )  , whichCurve);
+
+
+    float3 pMinus;
+
+    pMinus = getCurveValue( int( baseUp - 1. )    , whichCurve);
+    p2 =     getCurveValue( int( baseDown + 1. )  , whichCurve);
+
+    v1 = .5 * ( p2 - p0 );
+    v0 = .5 * ( p1 - pMinus );
+
+  }
+
+
+  float3 c0 = p0;
+  float3 c1 = p0 + v0/3.;
+  float3 c2 = p1 - v1/3.;
+  float3 c3 = p1;
+
+  float3 pos = cubicCurve( amount , c0 , c1 , c2 , c3 );
+
+  upPos = cubicCurve( amount  + .01 , c0 , c1 , c2 , c3 );
+  doPos = cubicCurve( amount  - .01 , c0 , c1 , c2 , c3 );
+
+  return pos;
+
+
+}
+
+#define NR_THREADS 128
+[numthreads(NR_THREADS,1,1)]
+void CSMain (uint threadID : SV_GroupIndex, uint3 u3GroupID : SV_GroupID) {
+
+  int pID = threadID + u3GroupID.x * NR_THREADS;
+
+  if( pID < _Count ){
+    
+    Vert v = vertBuffer[pID];
+
+    float valAlong = clamp(v.pos.z / _ModelLength,0,1);
+
+    float3 up1; float3 down1;
+    float3 up2; float3 down2;
+    float3 extraPos1 = cubicFromValue(0,valAlong,up1,down1);
+    float3 extraPos2 = cubicFromValue(1,valAlong,up2,down2);
+
+    float3 avePos = (extraPos2+extraPos1)/2;
+    float3 aveUp = (up2+up1)/2;
+    float3 aveDown = (down2+down1)/2;
+
+
+    float3 zDir = normalize( aveUp - avePos );
+    float3 xDir = normalize(extraPos1-extraPos2);
+    float3 yDir = normalize(cross( xDir , zDir ));
+
+    float3 c1 = float3( xDir.x , yDir.x , zDir.x );
+    float3 c2 = float3( xDir.y , yDir.y , zDir.y );
+    float3 c3 = float3( xDir.z , yDir.z , zDir.z );
+    float3x3 rotMat = float3x3(c1,c2,c3);
+
+
+    float3 fPos = avePos+mul(rotMat, float3(v.pos.x,v.pos.y,0));
+    float3 fNor = normalize(mul(rotMat,v.nor));
+    float3 fTan = normalize(mul(rotMat,v.tan));
+
+    transferBuffer[pID].pos = fPos;// = v;
+    transferBuffer[pID].nor = fNor;// = v;
+    transferBuffer[pID].tan = fTan;// = v;
+    transferBuffer[pID].uv = v.uv;// = v;
+    transferBuffer[pID].debug = valAlong;
+
+
+  }
+
+}
