@@ -95,7 +95,7 @@ Shader "Custom/DepthNoiseNeow" {
 
       	//float s1 = 3 * _NoiseSize 
 
-        float v = (noise( pos * 3 ) + .5 * noise( pos * 8 ) + .25 * noise( pos * 20 ) );
+        float v = (noise( pos * 3 * _NoiseSize ) + .5 * noise( pos * 8 * _NoiseSize) + .25 * noise( pos * 20 * _NoiseSize) );
         return  v * v * v * .6 ;
       }
       
@@ -139,7 +139,7 @@ Shader "Custom/DepthNoiseNeow" {
         float3 rd 			= i.rd;       
 
         // Our color starts off at zero,   
-        float3 col = float3( 0.0 , 0.0 , 0.0 );
+        float3 col = float3( 1.0 , 1.0 , 1.0 );
 
 
 
@@ -168,12 +168,14 @@ Shader "Custom/DepthNoiseNeow" {
 					}
 
 
-          col += 3 * hsv( stepVal * _HueSize + _BaseHue, 1 , 1) * val ;
-
+          if( val > 0 ){
+          col = 3 * hsv( stepVal * _HueSize + _BaseHue, 1 , 1) * val ;
+          break;
+        }
 
         }
 
-        col /= _NumberSteps;
+       // col /= _NumberSteps;
 
 
 

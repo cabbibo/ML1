@@ -19,14 +19,7 @@
 			
 			#include "UnityCG.cginc"
 
-			float4 _Collision1;
-			float4 _Collision2;
-			float4 _Collision3;
-			float4 _Collision4;
-			float4 _Collision5;
-			float4 _Collision6;
-			float4 _Collision7;
-			float4 _Collision8;
+
       float _MainTime;
 
 			struct appdata
@@ -56,6 +49,7 @@
 				o.uv = TRANSFORM_TEX(v.uv, _MainTex);
 				o.nor = v.normal;
 				o.pos = v.vertex.xyz;
+
 				o.worldPos = mul( unity_ObjectToWorld , v.vertex ).xyz;
 				UNITY_TRANSFER_FOG(o,o.vertex);
 				return o;
@@ -115,8 +109,6 @@ float3 bandColor( float3 pos , float3 cCol ,  float3 bandCol, float bandSize ,fl
             float3 bf = normalize(abs(v.nor));
             bf /= dot(bf, (float3)1);
 
-            float3 dif = v.worldPos - _Collision1;
-            float d = length( v.worldPos - _Collision1);
                     // Triplanar mapping
             float2 tx = v.pos.yz;//* sin(d*4);
             float2 ty = v.pos.zx;//* sin(d*4);
@@ -131,37 +123,9 @@ float3 bandColor( float3 pos , float3 cCol ,  float3 bandCol, float bandSize ,fl
             float3 col = hsv( length( color.xyz ) , 1, 1)  * ( sin(length(color.xyz)*10) + .1);
 
 
-            float3 bandCol;
-            float bandSize;
-            float band;
-
-            //col= float3(1,0,0);
-            bandCol = col;//float3(0,1,0);
-            col = float3(0,0,0);
-            col = bandColor( v.worldPos, col ,bandCol,.2,abs(d - ( _MainTime-_Collision1.w )) );
-            col = bandColor( v.worldPos, col ,bandCol,.2,abs(d - ( _MainTime-_Collision2.w )) );
-            col = bandColor( v.worldPos, col ,bandCol,.2,abs(d - ( _MainTime-_Collision3.w )) );
-            col = bandColor( v.worldPos, col ,bandCol,.2,abs(d - ( _MainTime-_Collision4.w )) );
-            col = bandColor( v.worldPos, col ,bandCol,.2,abs(d - ( _MainTime-_Collision5.w )) );
-            col = bandColor( v.worldPos, col ,bandCol,.2,abs(d - ( _MainTime-_Collision6.w )) );
-            col = bandColor( v.worldPos, col ,bandCol,.2,abs(d - ( _MainTime-_Collision7.w )) );
-            col = bandColor( v.worldPos, col ,bandCol,.2,abs(d - ( _MainTime-_Collision8.w )) );
-          //  col = float3(1,0,0);
-           // band = max(band,abs(d - ( _Time.y-_Collision2.w )));
-           // band = max(band,abs(d - ( _Time.y-_Collision3.w )));
-           // band = max(band,abs(d - ( _Time.y-_Collision4.w )));
-           // band = max(band,abs(d - ( _Time.y-_Collision5.w )));
-           // band = max(band,abs(d - ( _Time.y-_Collision6.w )));
-           // band = max(band,abs(d - ( _Time.y-_Collision7.w )));
-           // band = max(band,abs(d - ( _Time.y-_Collision8.w )));
-
-          
-          //) * clamp(1-.01*( _Time.y-_Collision1.w ) /d,0,1)/(200*d*d) - .2*( _Time.y-_Collision1.w );
-
-				// sample the texture
-			//x	fixed4 col = color;//float4( sin( 10000 * i.uv.x )  ,sin( 100 * i.uv.y ),0,1) +  1*float4(i.nor * .5 + .5);// * tex2D(_MainTex, i.uv);
-				// apply fog
-				//UNITY_APPLY_FOG(i.fogCoord, col);
+            float val = 1+dot( normalize(v.worldPos-_WorldSpaceCameraPos),v.nor);
+            col =  length(color) * hsv( val, .6 ,val*val*val);//float3(0,0,0);
+  
 				return fixed4(col,1);
 			}
 			ENDCG

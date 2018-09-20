@@ -1,4 +1,4 @@
-﻿#pragma kernel CSMain
+#pragma kernel CSMain
 #pragma kernel Constraint
 
 
@@ -63,7 +63,7 @@ void CSMain (uint threadID : SV_GroupIndex, uint3 u3GroupID : SV_GroupID, uint3 
 
     Vert vert = vertBuffer[pID];
 
-    float3 force = float3( 0 , -1, 0.0 );
+    float3 force = float3( 0 , -.5, 0.0 );
 
     // Inertia: objects in motion stay in motion.
     float3 vel = getVel( vert.pos , vert.oPos);
@@ -132,6 +132,7 @@ void CSMain (uint threadID : SV_GroupIndex, uint3 u3GroupID : SV_GroupID, uint3 
     
  
     }
+
     if(_Reset == 1){
         vert.pos = -(_StartPosition.xyz - _EndPosition.xyz )  * vert.uv.x + _StartPosition;
         vert.oPos = -(_StartPosition.xyz - _EndPosition.xyz )  * vert.uv.x + _StartPosition;

@@ -16,7 +16,6 @@ public class RopePhysics: VerletPhysics{
   public override void GetBuffer(){ buffer = GetComponent<RopeVertBuffer>(); }
   public override void SetShaderValues(){
 
-//    print("hmmmm1");
     shader.SetVector("_EndPosition", startPoint.transform.position );
     shader.SetVector("_StartPosition", endPoint.transform.position );
     shader.SetFloat("_Length" , ropeLength );

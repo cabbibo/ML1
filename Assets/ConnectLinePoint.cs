@@ -13,8 +13,12 @@ public class ConnectLinePoint : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-    lr.SetPosition(0 , transform.position);
-    lr.SetPosition(1 , o.position);
+		if( o != null ){
+      lr.SetPosition(0 , transform.position);
+      lr.SetPosition(1 , o.position);
+    }else{
+      lr.SetPosition(0 , transform.position);
+    lr.SetPosition(1 , transform.position);
+    }
 	}
 }

@@ -2,7 +2,15 @@
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.XR.MagicLeap;
+        [System.Serializable]
+public class MyVectorEvent : UnityEvent<Vector3>
+{
+}
 
+     [System.Serializable]
+public class MyFloatEvent : UnityEvent<float>
+{
+}
 namespace MagicLeap
 {
     [RequireComponent(typeof(ControllerConnectionHandler))]
@@ -16,6 +24,8 @@ namespace MagicLeap
         public UnityEvent OnTriggerUp;
         public UnityEvent OnTriggerUpdate;
 
+        public MyFloatEvent OnTriggerValue;
+
         [Header("Bumper")]
         public UnityEvent OnBumperDown;
         public UnityEvent OnBumperUp;
@@ -25,6 +35,10 @@ namespace MagicLeap
         public UnityEvent OnTouchpadDown;
         public UnityEvent OnTouchpadUp;
         public UnityEvent OnTouchpadUpdate;
+
+
+        public MyVectorEvent OnTouchpadVector;
+
 
         [Header("Touchpad Directions")]
         public UnityEvent OnTouchpadRightClick;
@@ -72,6 +86,7 @@ namespace MagicLeap
             {
                 _lastTriggerValue = triggerValue;
                 OnTriggerUpdate.Invoke();
+                OnTriggerValue.Invoke(triggerValue);
             }
 
 
@@ -85,8 +100,7 @@ namespace MagicLeap
                 }
                 _isTouching = true;
 
-                // Debug.Log("Touch: " + _touchPosition);
-
+                OnTouchpadVector.Invoke( _touchPosition );
                 // HARD CLICK
                 if (!_touchPadClicked && _touchPosition.z > 0.75f)
                 {

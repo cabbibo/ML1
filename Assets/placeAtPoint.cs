@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class placeAtPoint : MonoBehaviour {
-  public SpherePlacer placer;
+  public InterfaceMaker placer;
 
 	// Use this for initialization
 	void Start () {

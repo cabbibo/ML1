@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Hand
+  - PlacedSphere
+  - Mesh
+  - Knob
+  - SliderConnector
+  - NONE
   layers:
   - Default
   - TransparentFX

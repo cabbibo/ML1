@@ -11,7 +11,16 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/MagicLeap/Examples/Scenes/Meshing.unity
     guid: 867506c3cbb29bc42a71d236fbd415c2
-  - enabled: 1
-    path: Assets/strangeRoom1.unity
+  - enabled: 0
+    path: Assets/Scenes/strangeRoom1.unity
     guid: 29bb833d794cf2d48a737af9f3b30f3f
+  - enabled: 0
+    path: Assets/MagicLeap/Examples/Scenes/HandTracking.unity
+    guid: c027f118f9ccd4979b8795eb3900db70
+  - enabled: 0
+    path: Assets/SlidePlaceHand.unity
+    guid: e7cae965429c366489c147636ab520c3
+  - enabled: 1
+    path: Assets/mechanics stuff.unity
+    guid: caa1fc12cb4c3a54d8cb292476f9261a
   m_configObjects: {}

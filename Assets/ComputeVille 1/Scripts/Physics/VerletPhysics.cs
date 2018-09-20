@@ -30,6 +30,7 @@ public class VerletPhysics : Physics {
  
 
   public override void FindKernel(){
+    print( shader );
     kernel = shader.FindKernel( kernelName );
     kernelConstraint = shader.FindKernel( kernelConstraintName );
   }

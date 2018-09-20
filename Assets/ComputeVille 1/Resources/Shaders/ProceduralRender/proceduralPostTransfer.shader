@@ -80,7 +80,8 @@
 
 
 				if( v.debug.x < 0 ){ col = float3(1,1,1);}
-				if( sin( v.uv.x * 300  +3* noise(v.worldPos*100)) < -.7 ){ discard;}
+				col = float3(1,1,1);
+				//if( sin( v.uv.x * 300  +3* noise(v.worldPos*100)) < -.7 ){ discard;}
 
 
 				//col = v.uv.x;//float3( 1,1,0);
